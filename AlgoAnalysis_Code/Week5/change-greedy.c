@@ -93,6 +93,7 @@ int main(int argc, char *argv[]){
     merge_sort(coins, 0, length-1);
 
     float amount = atof(argv[2]);
+    float final_amount = amount;
     int length_bag;
     float largest_value;
 
@@ -116,10 +117,26 @@ int main(int argc, char *argv[]){
     	amount = amount - largest_value;
     }
 
-    //here we have gone throught he loop to find the greedy solution
+    //here we have gone throught the loop to find the greedy solution
 
-    for(i=0;i<length_bag;i++)
-    	printf("%.2f\n", bag[i]);
+    //printing the contents of the bag in the required order
+    printf("%0.2f\t",final_amount);
+    
+    float value = bag[i];
+    int count;
+    for(i=0;i<length_bag-1;i++){
+    	count = 1;
+    	if(bag[i+1]==bag[i]){
+    		count++;
+    	}
+    	else{
+    		value = bag[i+1];
+    		printf("%.2f\t%d\t", bag[i], count);
+    		count = 1;
+		}
 
+	}
+
+	printf("%0.2f\t%d\t%d\n", value, count, length_bag);
 }
 

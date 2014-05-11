@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 
 void merge(float *array, int start, int mid, int end){
 
@@ -97,10 +98,10 @@ int main(int argc, char *argv[]){
 
     while(amount > 0.0) {
 
-    	largest_value = 0;
+    	largest_value = 0.0;
     	for (i = length-1; i >=0; i--){
-    		
-    		if(coins[i] <= amount && coins[i] > largest_value){
+
+    		if(floorf(coins[i] *100)/100 <= ceilf(amount * 100)/100 && coins[i] > largest_value){
     			largest_value = coins[i];
     		}
     	}

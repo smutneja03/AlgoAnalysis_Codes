@@ -122,10 +122,9 @@ int main(int argc, char *argv[]){
     //printing the contents of the bag in the required order
     printf("%0.2f\t",final_amount);
     
-    float value = bag[i];
-    int count;
+    float value = bag[0];
+    int count=1;
     for(i=0;i<length_bag-1;i++){
-    	count = 1;
     	if(bag[i+1]==bag[i]){
     		count++;
     	}

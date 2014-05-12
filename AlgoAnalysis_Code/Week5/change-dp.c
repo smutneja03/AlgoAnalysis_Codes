@@ -77,9 +77,9 @@ void get_change(int *indexing, int *array, int amount){
     printf("%d\t%d\t%d\n", value, count, index+1);
 }
 
-void make_change(int *array, int number, int amount){
+int make_change(int *array, int number, int amount){
 
-    int count[amount+1]; //this array will keep a record of number of coins required to make a change 
+    int count[amount+1]; //this array will keep a record of minimum number of coins required to make a change 
     int indexing[amount+1]; //will contain the index of the first coin recorded in the change
     count[0] = 0; // 0 coins are required to make a change of value 0
     indexing[0] = 0;
@@ -109,11 +109,21 @@ void make_change(int *array, int number, int amount){
 
     get_change(indexing, array, amount);
 
+    return count[amount];
+
 }
 
 int main(int argc, char *argv[]){
 
-	int coins[20];
+	FILE *dp = fopen("log_dp.txt", "a");
+
+    if(dp==NULL){
+
+        printf("Error in opening of the log text files\n");
+        return 0;
+    }
+
+    int coins[20];
 	int i = 0, length = 0;
 	int coin_value;
 
@@ -166,7 +176,10 @@ int main(int argc, char *argv[]){
     */
 
 
-    make_change(coins, length, amount);    
+    int answer = make_change(coins, length, amount);    
     
+
+    fprintf(dp, "%d\t%d\n", amount, answer);
+
 }
 

@@ -49,7 +49,15 @@ void merge_sort(float *array, int start, int end){
 
 int main(int argc, char *argv[]){
 
-	float coins[20];
+	FILE *greedy = fopen("log_greedy.txt", "a");
+
+    if(greedy==NULL){
+
+        printf("Error in opening of the log text files\n");
+        return 0;
+    }
+
+    float coins[20];
 	int i = 0, length = 0;
 	float coin_value;
 	float bag[100]; //will store the coins used to get the given value
@@ -137,5 +145,8 @@ int main(int argc, char *argv[]){
 	}
 
 	printf("%0.2f\t%d\t%d\n", value, count, length_bag);
+
+    fprintf(greedy, "%0.0f\t%d\n", final_amount, length_bag);
+
 }
 

@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <math.h>
 
+
 void merge(int *array, int start, int mid, int end){
 
   int temp[end];
@@ -47,7 +48,7 @@ void merge_sort(int *array, int start, int end){
 
 }
 
-void get_change(int *indexing, int *array, int amount){
+void get_change(int *indexing, int *array, int amount, FILE *dp){
 
     int coins[100], index=0, i;
     while(amount > 0){
@@ -68,16 +69,16 @@ void get_change(int *indexing, int *array, int amount){
         }
         else{
             value = coins[i+1];
-            printf("%d\t%d\t", coins[i], count);
+            fprintf(dp, "%d\t%d\t", coins[i], count);
             count = 1;
         }
 
     }
 
-    printf("%d\t%d\t%d\n", value, count, index+1);
+    fprintf(dp, "%d\t%d\t%d\n", value, count, index+1);
 }
 
-int make_change(int *array, int number, int amount){
+int make_change(int *array, int number, int amount, FILE *dp){
 
     int count[amount+1]; //this array will keep a record of minimum number of coins required to make a change 
     int indexing[amount+1]; //will contain the index of the first coin recorded in the change
@@ -105,9 +106,9 @@ int make_change(int *array, int number, int amount){
 
     }
 
-    printf("%d\t", amount);
+    fprintf(dp, "%d\t", amount);
 
-    get_change(indexing, array, amount);
+    get_change(indexing, array, amount, dp);
 
     return count[amount];
 
@@ -176,10 +177,10 @@ int main(int argc, char *argv[]){
     */
 
 
-    int answer = make_change(coins, length, amount);    
+    int answer = make_change(coins, length, amount, dp);    
     
 
-    fprintf(dp, "%d\t%d\n", amount, answer);
+    //fprintf(dp, "%d\t%d\n", amount, answer);
 
 }
 

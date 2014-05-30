@@ -128,7 +128,7 @@ int main(int argc, char *argv[]){
     //here we have gone throught the loop to find the greedy solution
 
     //printing the contents of the bag in the required order
-    printf("%0.2f\t",final_amount);
+    fprintf(greedy, "%0.2f\t",final_amount);
     
     float value = bag[0];
     int count=1;
@@ -138,15 +138,15 @@ int main(int argc, char *argv[]){
     	}
     	else{
     		value = bag[i+1];
-    		printf("%.2f\t%d\t", bag[i], count);
+    		fprintf(greedy, "%.2f\t%d\t", bag[i], count);
     		count = 1;
 		}
 
 	}
 
-	printf("%0.2f\t%d\t%d\n", value, count, length_bag);
+	fprintf(greedy, "%0.2f\t%d\t%d\n", value, count, length_bag);
 
-    fprintf(greedy, "%0.0f\t%d\n", final_amount, length_bag);
+    //fprintf(greedy, "%0.0f\t%d\n", final_amount, length_bag);
 
 }
 
